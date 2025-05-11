@@ -20,7 +20,6 @@ import cards.Deck;
 public class SimplifiedBlackJackAgent {
 
     Card   card;
-    Card[] cardVector;
     Deck   deck = new Deck();
     
     int Punkte = 0;
