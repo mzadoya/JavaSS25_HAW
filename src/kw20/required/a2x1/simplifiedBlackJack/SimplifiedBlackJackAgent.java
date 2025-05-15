@@ -7,8 +7,6 @@ import kw20.required.a2x1.cards.Card.*;
 import static kw20.required.a2x1.cards.Card.*;
 import static kw20.required.a2x1.cards.Card.Constant.*;
 
-import cards.Card;
-import cards.Deck;
 
 
 /**

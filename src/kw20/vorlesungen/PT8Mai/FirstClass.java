@@ -1,6 +1,6 @@
 package kw20.vorlesungen.PT8Mai;
 
-public class Package {
+public class FirstClass {
     
     public static void main (String args[]) {
         
