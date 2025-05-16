@@ -33,7 +33,8 @@ public class PrimeFactorPrinter {
      */
     public void printFactorization( long number ){
         
-        while (number != 1) {
+        if (number > 1)  {
+        while (number > 1) {
             int i = 2;
             while (number%i!=0) {
                 i++;
@@ -42,9 +43,10 @@ public class PrimeFactorPrinter {
             number = number / i;
             if (number!=1)  System.out.print(" * ");
         }
-        
+      }
+        else assert (false) : "Deine Zahl ist zu klein :(";  
         System.out.flush();
-    }//method()
+    }
     
     public long integerSquareRoot( final long value ){
         if( 0 > value )  throw new IllegalArgumentException( String.format( "Parameter %d has to be positive",  value ));
