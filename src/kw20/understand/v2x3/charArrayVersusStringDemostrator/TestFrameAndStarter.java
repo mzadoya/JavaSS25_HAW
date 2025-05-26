@@ -3,9 +3,8 @@ package  kw20.understand.v2x3.charArrayVersusStringDemostrator;
 
 
 import java.util.Scanner;
-import stuffBeginnersDontHaveToUnderstand.Herald;
-import stuffBeginnersDontHaveToUnderstand.Version;
-
+import kw20.understand.v2x3.stuffBeginnersDontHaveToUnderstand.Herald;
+import kw20.understand.v2x3.stuffBeginnersDontHaveToUnderstand.Beautician;
 
 /**
  * {@link TestFrameAndStarter} for :  char[] versus String demonstrator.

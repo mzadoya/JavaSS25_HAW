@@ -45,18 +45,12 @@ public class LastThree {
      * print the last three numbers/values
      */
     public void printLastThree(){
-        if (counter == 0) {
-            System.out.print("Sie haben noch keine Werte eingegeben...:(");
+        switch(counter) {
+            case 0: System.out.print("Sie haben noch keine Werte eingegeben...:("); break;
+            case 1: System.out.printf("Sie haben nur einen Wert eingegeben: %d", value1); break;
+            case 2: System.out.printf("Erste eingabe ist %d, die zweite ist %d", value2, value1); break;
+            case 3: System.out.printf("pos1: %d, pos2: %d, pos3: %d", value3, value2, value1); break;
         }
-        else if (counter ==1) {
-            System.out.printf("Sie haben nur einen Wert eingegeben: %d", value1);
-        }
-        else if (counter == 2) {
-            System.out.printf("Erste eingabe ist %d, die zweite ist %d", value2, value1);
-        }
-        else if (counter == 3) {
-            System.out.printf("pos1: %d, pos2: %d, pos3: %d", value3, value2, value1);
-}
     }//method()
     
     /**

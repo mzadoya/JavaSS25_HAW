@@ -2,7 +2,8 @@ package kw20.understand.v2x3.charArrayVersusStringDemostrator;
 
 
 import java.util.Arrays;
-import stuffBeginnersDontHaveToUnderstand.Version;
+
+import kw20.understand.v2x3.stuffBeginnersDontHaveToUnderstand.Version;
 
 
 /**

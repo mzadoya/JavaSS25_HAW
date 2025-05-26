@@ -55,7 +55,10 @@ public class CardDemo {
         
         
         
-        
+        /*Fragen:
+         * - Abschnitt 3.2 ist Position einfach die Position im Array oder wie?
+         * 
+         */
         
         /* Nach Vorlesungsstand sind beim ersten Kontakt mit dieser Demo
          * vermutlich die "Scope-Regeln" noch nicht bekannt,
@@ -162,7 +165,7 @@ public class CardDemo {
         System.out.printf( "\n" );
         //
         // alle Karten des Array (geschlossen) ausgeben
-        printCardArray( cardVector );
+        printCardArray( cardVector );             // als echte Karten ausgeben 
         //
         System.out.printf( "\n\n\n" );
         
@@ -185,7 +188,7 @@ public class CardDemo {
         
         card = deck.deal();
         System.out.printf( "Die Karte %s hat:\n", card );
-        System.out.printf( "    Die (Rang-Aufzähl-)Position: %2d    (2 hat (Rang-Aufzähl-)Position 0  und Ass hat (Rang-Aufzähl-)Position 12)\n",  card.getRank().ordinal() );
+        System.out.printf( "    Die (Rang-Aufzähl-)Position: %2d    (2 hat (Rang-Aufzähl-)Position 0  und Ass hat (Rang-Aufzähl-)Position 12)\n",  card.getRank().ordinal() ); // KA 
         System.out.printf( "    Den Rang:  %s / (Rang-)Wert:  %2d    (2 hat Rang 2 / (Rang-)Wert 2     und Ass hat Rang A / (Rang-)Wert 14)\n",    card.getRank(),  card.getRank().value() );
         System.out.printf( "    Die Farbe:                    %s\n",                                                                               card.getSuit() );
         //
@@ -233,15 +236,14 @@ public class CardDemo {
         System.out.printf( "\n" );
         //
         // Demo für decrement
-        do{
-            System.out.printf( "%s ", r );
-            r = r.decrement();                                                  // <<<==== hier Beispiel-Aufruf
-        }while( ! r.equals( TWO ));
-        //\=> r ist TWO
-        System.out.printf( "\n" );
+        do {
+            System.out.printf("%s ", r);
+            r = r.decrement(); // <<<==== hier Beispiel-Aufruf
+        } while (!r.equals(TWO));
+        // \=> r ist TWO
+        System.out.printf("\n");
         //
-        System.out.printf( "\n\n\n" );
-        
+        System.out.printf("\n\n\n");
         
         
         //----------------------------------------------------------------------

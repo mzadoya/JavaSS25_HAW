@@ -7,7 +7,7 @@ import static kw20.vorlesungen.PT15Mai.cards.Card.Constant.*;
 
 public class FirstClass {
     
-    
+
     //hat teilweise die Inhalte von PM Vorlesung am 20.05.2025
 
     public static void main(String[] args) {
@@ -36,8 +36,20 @@ public class FirstClass {
     swapArray(erstesArray,zweitesArray,istRueckgabeAktiv);
     System.out.printf("Zahl 1 nachher: %d, Zahl 2 nachher: %d %nEs ist zu sehen, dass bei Objekten wird die Referenz"
             + "auf das Objekt kopiert, deswegen sind die Aenderungen sowohl in main, %nals auch in swap Methode erkennbar sind ", erstesArray[0], zweitesArray[0]);
-    System.out.printf("%nENDE BLOCK 2--------------------------------------------------------");
+    System.out.printf("%nENDE BLOCK 2--------------------------------------------------------%n");
+    
+    int sumIntegers = 0; int randomNumberOne = 356; int randomNumberTwo = 135; 
+    sumArgs(sumIntegers, randomNumberOne, randomNumberTwo);
+    
+    //Array kann auch uebergeben werden 
+    
+    int[] irgendwelcherRandomArrayFuerSumme = new int[30];
+    for (int i = 0; i < irgendwelcherRandomArrayFuerSumme.length; i++ ) {
+        irgendwelcherRandomArrayFuerSumme[i] = (i*12+245*1284)/1005;
+      }
+    sumArgs(sumIntegers, irgendwelcherRandomArrayFuerSumme);
     }
+   
     
     public static void doSomething() {
         int[] v = {1,3,5}; 
@@ -88,4 +100,12 @@ public class FirstClass {
        System.out.printf("Zahl 1 nachher: %d, Zahl 2 nachher: %d %n ", x[0], y[0]);
        }
    }
+   public static void sumArgs(int sumIntegers, int... variable) {
+     
+     for (int v : variable) {
+         
+         sumIntegers += v;
+        }
+     System.out.printf("%nDie Summe der gegebenen Werten ist %d", sumIntegers);
+     }
 }

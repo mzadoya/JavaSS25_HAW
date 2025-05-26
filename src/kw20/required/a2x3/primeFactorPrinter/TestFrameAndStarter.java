@@ -1,11 +1,12 @@
 // This source code is UTF-8 coded - see https://stackoverflow.com/questions/9180981/how-to-support-utf-8-encoding-in-eclipse
 package kw20.required.a2x3.primeFactorPrinter;
 import kw20.required.a2x3.stuffBeginnersDontHaveToUnderstand.Herald;
+
 import kw20.required.a2x3.stuffBeginnersDontHaveToUnderstand.Beautician;
 
 import java.util.Scanner;
-import stuffBeginnersDontHaveToUnderstand.Beautician;
-import stuffBeginnersDontHaveToUnderstand.Herald;
+import kw20.required.a2x3.stuffBeginnersDontHaveToUnderstand.Beautician;
+import kw20.required.a2x3.stuffBeginnersDontHaveToUnderstand.Herald;
 
 
 /**
