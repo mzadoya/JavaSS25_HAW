@@ -16,84 +16,63 @@ public class ArrayProcessor {
         
 
         
-        int musterSiteHeigth = 2; int musterSiteLength = 2;
+        int patternHeight = 2; int patternWidth = 2;
         
-        int testedFor = musterSiteHeigth + musterSiteLength;
+        int patternSize = patternHeight + patternWidth;
         int startPosition = 0;
         
-        int longestReiheMid = 999999999; 
-        int longestReiheToCompare = 0;
-        int longestReiheStartEnd = 999999999;
-        int longestReiheBegrenzung = 0;
+        int minMiddleRowLength, currentRowLength, minEdgeRowLength, limitLength;
+
+        long totalSum = 0;
         
-        long sum = 0;
-        System.out.printf("theArray is: %n");
-        for (int i = 0 ; i < theArray.length; i++) {
-            for (int j = 0; j < theArray[i].length; j++) {
-                System.out.printf("%d", theArray[i][j]);
-            }
-            System.out.println();
-        }
-        
-        while (startPosition+testedFor <= theArray.length) {
-            
-            if (theArray[startPosition].length > 0 && theArray[startPosition+1].length > 0 && 
-                    theArray[startPosition+2].length > 0 && theArray[startPosition+3].length > 0) {
+        while (startPosition+patternSize <= theArray.length) {
+           
+            currentRowLength = 0;
+            limitLength = 0;
+            minMiddleRowLength = Integer.MAX_VALUE; 
+            minEdgeRowLength = Integer.MAX_VALUE;
                 
-                
-                
-            for (int i = startPosition; i<testedFor+startPosition; i++) {
+            for (int i = startPosition; i<patternSize+startPosition; i++) {
                 
                 if (i - startPosition == 1 || i - startPosition == 2 ) {
-                    longestReiheToCompare = theArray[i].length;
-                      if (longestReiheToCompare<longestReiheMid) { 
-                          longestReiheMid = longestReiheToCompare; 
+                    currentRowLength = theArray[i].length;
+                      if (currentRowLength<minMiddleRowLength) { 
+                          minMiddleRowLength = currentRowLength; 
                           
                     }//if inside if
                       
                 }//if inside if and for
                 else { 
-                    longestReiheToCompare = theArray[i].length;
-                     if (longestReiheToCompare < longestReiheStartEnd) {
-                         longestReiheStartEnd = longestReiheToCompare;
+                    currentRowLength = theArray[i].length;
+                     if (currentRowLength < minEdgeRowLength) {
+                         minEdgeRowLength = currentRowLength;
                     }//if inside else 
                 }//else
             }//for 
             
-            if (longestReiheStartEnd >= longestReiheMid) {
-                longestReiheBegrenzung = longestReiheMid;
+            if (minEdgeRowLength >= minMiddleRowLength) {
+                limitLength = minMiddleRowLength;
             }//if 
-            else if (longestReiheStartEnd < longestReiheMid) {
-                longestReiheBegrenzung = longestReiheStartEnd+1; 
+            else { limitLength = minEdgeRowLength+1; 
             }
             
-            System.out.printf("Begrenzung %d %n",longestReiheBegrenzung);
-            
-           if (longestReiheBegrenzung > 0) {
-            for (int j = 0; j <= longestReiheBegrenzung-testedFor; j++) {
+         if (limitLength >= 4) {
+            for (int j = 0; j <= limitLength-patternSize; j++) {
                  
-                for (int i = 0; i < musterSiteLength; i++) {
-                    sum += theArray[startPosition][i+j+1]; System.out.printf("+ %d (%d) +", theArray[startPosition][i+j+1], j);
-                    sum += theArray[startPosition+testedFor-1][i+j+1]; System.out.printf("+ %d (%d) +", theArray[startPosition+testedFor-1][i+j+1], j);
+                for (int i = 0; i < patternWidth; i++) {
+                    totalSum += theArray[startPosition][i+j+1];
+                    totalSum += theArray[startPosition+patternSize-1][i+j+1]; 
                 }// for inside for and if(musterSiteLength)
-            }//for 
-            for (int j = 0; j <= longestReiheBegrenzung-testedFor; j++) {
-                for (int i = 0; i < musterSiteHeigth; i++ ) {
-                    sum += theArray[startPosition+1+i][j]; System.out.printf("+ %d (%d) +", theArray[startPosition+1+i][j], j);
-                    sum += theArray[startPosition+1+i][j+testedFor-1]; System.out.printf("+ %d (%d) +", theArray[startPosition+1+i][j+testedFor-1], j);
+                for (int i = 0; i < patternHeight; i++ ) {
+                    totalSum += theArray[startPosition+1+i][j];
+                    totalSum += theArray[startPosition+1+i][j+patternSize-1];
                 }// for inside for and if (musterSiteHeigth)
                 
              }//for inside if
            }//if
-        }
-           startPosition++;
-           longestReiheToCompare = 0;
-           longestReiheBegrenzung = 0;
-           longestReiheMid = Integer.MAX_VALUE; 
-           longestReiheStartEnd = Integer.MAX_VALUE;
-           System.out.println();
-         
-        }//while
+        
+            startPosition++;
+    }//while
         
         /*  for (int i = startPosition; i<testedFor+startPosition; i++) {
         longestReiheToCompare = theArray[i].length;
@@ -157,7 +136,7 @@ public class ArrayProcessor {
         
         */
         
-        return sum;   // <<<=== Diese Zeile ist falsch!   bzw. nur ein Platzhalter um den Compiler gluecklich zu machen. Die Zeile muss sinnvoll ersetzt werden.
+        return totalSum;   // <<<=== Diese Zeile ist falsch!   bzw. nur ein Platzhalter um den Compiler gluecklich zu machen. Die Zeile muss sinnvoll ersetzt werden.
     }//method()
     //^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
     // Führen Sie Änderungen oberhalb dieser Zeilen durch.

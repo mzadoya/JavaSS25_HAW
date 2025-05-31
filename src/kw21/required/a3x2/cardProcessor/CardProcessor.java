@@ -24,36 +24,25 @@ public class CardProcessor {
         public static Card[][] generateCardMatrix (Card[] givenCards) {
             Card[][] cardMatrix = new Card[4][13];
         
-        int lengthOfArray = givenCards.length;
         
-        for (int i = 0; i < cardMatrix.length; i++) {
-            for(int j = 0; j < cardMatrix[0].length; j++) {
-                for (int h = 0; h < givenCards.length; h++) {
-                final Rank rankCard = givenCards[h].getRank();
-                final Suit suitCard = givenCards[h].getSuit();
-                final int cardSuitAsIndex = suitCard.ordinal();
-                final int cardRankAsIndex = rankCard.ordinal();
-                if (cardSuitAsIndex == i) {
-                   if (cardRankAsIndex == j) {
-                    cardMatrix[i][j] = givenCards[h];   
-                     }//if inside if
-                   }//if 
-                }//for inside for inside for         
-            }//for inside for
+        for (Card card : givenCards) {
+            int suitIndex = card.getSuit().ordinal();
+            int rankIndex = card.getRank().ordinal();
+            cardMatrix[suitIndex][rankIndex] = card;
         }//for
         printCardMatrixForFun(cardMatrix);
         return cardMatrix;
     }//method
         
-        public static void sortCards(Card[] cardArrayToBeSorted) {
+        public static void sortCards(Card[] cardsToSort) {
             
-            Card[][] cardMatrix = generateCardMatrix(cardArrayToBeSorted);
-            int posCounter = 0;
+            Card[][] cardMatrix = generateCardMatrix(cardsToSort);
+            int posIndex = 0;
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 13; j++) {
                     if (cardMatrix[i][j]!=null) {
-                        cardArrayToBeSorted[posCounter] = cardMatrix[i][j];
-                        posCounter++;
+                        cardsToSort[posIndex] = cardMatrix[i][j];
+                        posIndex++;
                     }//if 
                 }//for inside for
             }//for
