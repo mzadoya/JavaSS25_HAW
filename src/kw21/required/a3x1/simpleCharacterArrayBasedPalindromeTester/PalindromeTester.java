@@ -13,10 +13,12 @@ public class PalindromeTester {
     
     public boolean isPalindrome(char[] arrayOfChars) {
        
-        for (int i = 0; i < arrayOfChars.length/2; i++) {
+        int i = 0;
+        while (i < arrayOfChars.length/2) {
             if (arrayOfChars[i]==arrayOfChars[arrayOfChars.length-1-i]) {
             }
             else return false;
+            i++;
         }
         
        return true;
