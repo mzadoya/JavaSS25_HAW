@@ -2,13 +2,14 @@ package kw24.required.a4x2.bankAccount;
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+
 //
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import stuffBeginnersDontHaveToUnderstand.EnvironmentAnalyzer;
-import stuffBeginnersDontHaveToUnderstand.GivenCodeVersion;
-import stuffBeginnersDontHaveToUnderstand.Version;
+import kw24.required.a4x2.stuffBeginnersDontHaveToUnderstand.EnvironmentAnalyzer;
+import kw24.required.a4x2.stuffBeginnersDontHaveToUnderstand.GivenCodeVersion;
+import kw24.required.a4x2.stuffBeginnersDontHaveToUnderstand.Version;
 
 
 /**

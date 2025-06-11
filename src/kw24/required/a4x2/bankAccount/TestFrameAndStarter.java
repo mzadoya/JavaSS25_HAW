@@ -73,7 +73,7 @@ public class TestFrameAndStarter {
         // haben,  müssen die Blockkommentarzeichen entfernt werden.
         //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
         
-        /*                                                                      // <- muss weg
+                                                                   // <- muss weg
         BankAccount[] bankAccount = new BankAccount[15];
         CurrentAccount[] currentAccount = new CurrentAccount[10];
         SavingsAccount[] savingsAccount = new SavingsAccount[5];
@@ -122,7 +122,7 @@ public class TestFrameAndStarter {
         System.out.printf( "-------------------------------------------------------------------------------\n" );
         System.out.printf( "OPTIONAL TESTs  from Student(s)\n" );
         System.out.printf( "\n\n" );
-        */                                                                      // <- muss weg
+                                                                      // <- muss weg
         //###
         //###   Oberhalb dieser Position sind KEINE Änderungen am Code erlaubt.
         //###   Bei der Abgabe müssen die oberen Zeilen im Original-Zustand sein.
@@ -144,7 +144,48 @@ public class TestFrameAndStarter {
         //###                  VVVVVVVV
         //###                     VV
         
-        
+        // === Eigene Tests ===
+        System.out.printf("==== Zusätzliche Tests ====\n\n");
+
+        // 1. Test: Übertrag von mehr Geld als verfügbar -> sollte scheitern (evtl. stillschweigend)
+        CurrentAccount c1 = new CurrentAccount("30000001", 500_00, 50); // 5.00 Euro
+        CurrentAccount c2 = new CurrentAccount("30000002", 100_00, 50); // 1.00 Euro
+        TransferManager tm = new TransferManager();
+        tm.transfer(c1, c2, 1_000_00); // Versuch, 100.00 zu überweisen
+        System.out.printf("1. Zu viel überweisen:\n  %s\n  %s\n\n", c1, c2);
+
+        // 2. Test: Übertrag von genauem Guthaben abzüglich Gebühr -> sollte gehen
+        CurrentAccount c3 = new CurrentAccount("30000003", 1_000_00, 50); // 10.00 Euro
+        CurrentAccount c4 = new CurrentAccount("30000004", 0, 50);
+        tm.transfer(c3, c4, 950); // 9.50 + 0.50 Gebühr = 10.00
+        System.out.printf("2. Übertrag exakt möglicher Betrag:\n  %s\n  %s\n\n", c3, c4);
+
+        // 3. Test: Zinsen korrekt berechnen (z. B. 10% auf 1000)
+        SavingsAccount s1 = new SavingsAccount("99000000", 1_000_00, 10); // 10%
+        s1.giveInterest();
+        System.out.printf("3. Zinsen auf 1000.00 (10%%):\n  %s\n\n", s1); // Sollte 1100.00 sein
+
+        // 4. Test: Mehrfaches giveInterest – darf mehrfach angewendet werden?
+        SavingsAccount s2 = new SavingsAccount("99000001", 1_000_00, 20); // 20%
+        s2.giveInterest();
+        s2.giveInterest(); // zweites Mal
+        System.out.printf("4. Zwei mal Zinsen auf 1000.00 (20%%):\n  %s\n\n", s2); // 1000 → 1200 → 1440
+
+       
+
+        // 6. Test: Versuch negativer Betrag
+        try {
+            tm.transfer(c3, c4, -500);
+            System.out.printf("6. Negativer Transferbetrag - kein Fehler?\n");
+        } catch (Exception e) {
+            System.out.printf("6. Negativer Transferbetrag - Exception: %s\n", e.getMessage());
+        }
+
+        // 7. Test: Konten mit gleichem IBAN – allowed?
+        CurrentAccount cx = new CurrentAccount("DUPLICATE", 1000_00, 10);
+        CurrentAccount cy = new CurrentAccount("DUPLICATE", 0, 10);
+        tm.transfer(cx, cy, 500_00);
+        System.out.printf("7. Zwei Konten mit gleicher IBAN:\n  %s\n  %s\n\n", cx, cy);
         
         // HHH      HHH   III   EEEEEEEEEEEE   RRRRRRRRRRR          <<<                                  !!!
         // HHH      HHH   III   EEEEEEEEEEEE   RRRRRRRRRRRR        <<<                                   !!!

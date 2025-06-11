@@ -3,10 +3,11 @@ package kw24.required.a4x3.palindromeFinder;
 
 
 import java.util.Scanner;
-import stuffBeginnersDontHaveToUnderstand.Beautician;
-import stuffBeginnersDontHaveToUnderstand.EnvironmentAnalyzer;
-import stuffBeginnersDontHaveToUnderstand.GivenCodeVersion;
-import stuffBeginnersDontHaveToUnderstand.Version;
+
+import kw24.required.a4x3.stuffBeginnersDontHaveToUnderstand.Beautician;
+import kw24.required.a4x3.stuffBeginnersDontHaveToUnderstand.EnvironmentAnalyzer;
+import kw24.required.a4x3.stuffBeginnersDontHaveToUnderstand.GivenCodeVersion;
+import kw24.required.a4x3.stuffBeginnersDontHaveToUnderstand.Version;
 
 
 /**
@@ -75,8 +76,7 @@ public class TestFrameAndStarter {
         // Sobald Sie Ihre Lösung(en) in der/den geforderten Klasse(n) implementiert
         // haben,  müssen die Blockkommentarzeichen entfernt werden.
         //vvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvvv
-        
-        /*                                                                      // <- muss weg
+                                                             // <- muss weg
         String givenText = "Werner sagte: \"Es stellen sich neben dem Reliefpfeiler auf: Otto neben Otto und Ede neben Ede.\"";
         PalindromeFinder palindromeFinder = new PalindromeFinder( givenText );
         System.out.printf( "Der folgende Text\n" );
@@ -153,7 +153,7 @@ public class TestFrameAndStarter {
         System.out.printf( "-------------------------------------------------------------------------------\n" );
         System.out.printf( "OPTIONAL TESTs  from Student(s)\n" );
         System.out.printf( "\n\n" );
-        */                                                                      // <- muss weg
+                                                                           // <- muss weg
         //###
         //###   Oberhalb dieser Position sind KEINE Änderungen am Code erlaubt.
         //###   Bei der Abgabe müssen die oberen Zeilen im Original-Zustand sein.
