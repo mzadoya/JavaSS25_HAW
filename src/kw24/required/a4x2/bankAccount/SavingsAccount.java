@@ -2,7 +2,7 @@ package kw24.required.a4x2.bankAccount;
 
 public class SavingsAccount extends BankAccount {
 
-    private int zinsatz;
+    int zinsatz;
 
     public SavingsAccount(String iban, long guthaben, int zinsatz) {
 
@@ -23,11 +23,9 @@ public class SavingsAccount extends BankAccount {
         }
     }
 
+    // toString
     @Override
     public String toString() {
         return "SavingsAccount [zinsatz=" + zinsatz + ", iban=" + iban + ", guthaben=" + guthaben + "]";
     }
-
-    // toString
-
 }

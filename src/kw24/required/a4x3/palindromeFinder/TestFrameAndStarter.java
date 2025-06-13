@@ -1,7 +1,6 @@
 // This source code is UTF-8 coded - see https://stackoverflow.com/questions/9180981/how-to-support-utf-8-encoding-in-eclipse
 package kw24.required.a4x3.palindromeFinder;
 
-import java.util.Random;
 
 import java.util.Scanner;
 
@@ -239,210 +238,138 @@ public class TestFrameAndStarter {
     }
 
     // Метод для тестирования производительности
-    public static void performanceTest() {
-        System.out.println("Генерируем огромную тестовую строку...");
-        String hugeString = generateHugeTestString();
+   
+    private static void performanceTest() {
+        System.out.printf("=== ГИПЕР-СЛОЖНЫЕ ТЕСТЫ ===\n\n");
         
-        System.out.println("Длина строки: " + hugeString.length() + " символов");
-        System.out.println("Первые 50 символов: " + hugeString.substring(0, 50));
-        System.out.println("Символы в позиции 1000000-1000050: " + 
-                          hugeString.substring(1000000, 1000050));
+        // ТЕСТ 1: Множественные вложенные палиндромы
+        System.out.printf("Тест 1: Множественные вложенные палиндромы\n");
+        String complexPalindromes = "abcdefghijklmnopqrstuvwxyzabacabABCcbacbacbAzyxwvutsrqponmlkjihgfedcbaabcdefg";
+        testPalindrome(complexPalindromes, "Вложенные палиндромы");
         
-        PalindromeFinder pf = new PalindromeFinder(hugeString);
-        
-        System.out.println("\nЗапускаем поиск палиндрома...");
-        long startTime = System.currentTimeMillis();
-        
-        String result = pf.getLongestPalindrome();
-        
-        long endTime = System.currentTimeMillis();
-        long duration = endTime - startTime;
-        
-        System.out.println("Результат найден!");
-        System.out.println("Время выполнения: " + duration + " мс (" + (duration/1000.0) + " сек)");
-        System.out.println("Длина найденного палиндрома: " + result.length());
-        System.out.println("Первые 20 символов результата: " + 
-                          result.substring(0, Math.min(20, result.length())));
-        
-        // Проверяем, что результат действительно палиндром
-        boolean isPalindrome = result.equals(new StringBuilder(result.toLowerCase()).reverse().toString());
-        System.out.println("Результат является палиндромом: " + isPalindrome);
-    }
-    //++++ EXTERN START++++ 
-    public static String generateExtremeTestString() {
-        StringBuilder sb = new StringBuilder();
-        Random random = new Random();
-        
-        System.out.println("Генерация экстремального теста...");
-        
-        // 1. ОГРОМНЫЙ блок одинаковых символов (5 миллионов)
-        System.out.println("Добавляем 5 млн символов 'x'...");
-        for (int i = 0; i < 5_000_000; i++) {
-            sb.append('x');
+        // ТЕСТ 2: Огромный палиндром с разными символами (1 миллион символов)
+        System.out.printf("Тест 2: Огромный палиндром (1M символов)\n");
+        StringBuilder hugePalindrome = new StringBuilder();
+        String base = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
+        for (int i = 0; i < 10000; i++) {
+            hugePalindrome.append(base);
         }
-        
-        // 2. СПРЯТАННЫЕ палиндромы внутри блока 'x'
-        System.out.println("Встраиваем скрытые палиндромы...");
-        
-        // Большой палиндром в позиции 1 млн
-        insertPalindromeAt(sb, 1_000_000, "a", 50_000, "MEGA");  // 100k + центр
-        
-        // Средний палиндром в позиции 2 млн  
-        insertPalindromeAt(sb, 2_000_000, "b", 25_000, "SUPER"); // 50k + центр
-        
-        // Маленький палиндром в позиции 3 млн
-        insertPalindromeAt(sb, 3_000_000, "c", 10_000, "HIDDEN"); // 20k + центр
-        
-        // 3. МНОЖЕСТВО мелких палиндромов в случайных местах
-        System.out.println("Добавляем 1000 случайных палиндромов...");
-        String[] smallPalindromes = {
-            "racecar", "level", "deed", "noon", "civic", "radar", "refer", 
-            "madam", "kayak", "rotator", "deified", "reviver", "repaper"
-        };
-        
-        for (int i = 0; i < 1000; i++) {
-            int pos = random.nextInt(sb.length() - 100);
-            String pal = smallPalindromes[random.nextInt(smallPalindromes.length)];
-            sb.replace(pos, pos + pal.length(), pal);
+        hugePalindrome.append("ЦЕНТР");
+        for (int i = 9999; i >= 0; i--) {
+            hugePalindrome.reverse().append(base).reverse();
         }
+        testPalindrome(hugePalindrome.toString(), "Гигантский палиндром");
         
-        // 4. ДЛИННЫЕ последовательности разных символов
-        System.out.println("Добавляем длинные блоки других символов...");
+        // ТЕСТ 3: Множественные одинаковые символы с "ловушками"
+        System.out.printf("Тест 3: Ловушки с одинаковыми символами\n");
+        StringBuilder trickTest = new StringBuilder();
+        // Создаем много блоков "aaaa" но с более длинным палиндромом в конце
+        for (int i = 0; i < 50000; i++) {
+            trickTest.append("aaaa");
+        }
+        trickTest.append("bcdefghijklmnopqrstuvwxyzzyxwvutsrqponmlkjihgfedcb");
+        testPalindrome(trickTest.toString(), "Ловушка с одинаковыми символами");
         
-        // 1 миллион 'y'
+        // ТЕСТ 4: Регистро-зависимые палиндромы
+        System.out.printf("Тест 4: Сложные регистро-зависимые палиндромы\n");
+        String caseTest = "AbCdEfGhIjKlMnOpQrStUvWxYzZyXwVuTsRqPoNmLkJiHgFeDcBaAbCdEfGhI";
+        testPalindrome(caseTest, "Регистро-зависимый");
+        
+        // ТЕСТ 5: Unicode и специальные символы
+        System.out.printf("Тест 5: Unicode и специальные символы\n");
+        String unicodeTest = "🌟💫⭐✨🎭🎪🎨🎯🎲🎰🎯🎨🎪🎭✨⭐💫🌟абвгдеёжзийклмнопрстуфхцчшщъыьэюяяюэьыъщшчцхфутсрпонмлкйизжёедгвба";
+        testPalindrome(unicodeTest, "Unicode тест");
+        
+        // ТЕСТ 6: Экстремальная длина с одним символом (10 миллионов)
+        System.out.printf("Тест 6: Экстремальная длина (10M одинаковых символов)\n");
+        StringBuilder extremeTest = new StringBuilder();
+        for (int i = 0; i < 10_000_000; i++) {
+            extremeTest.append("z");
+        }
+        testPalindrome(extremeTest.toString(), "10M одинаковых символов");
+        
+        // ТЕСТ 7: Чередующиеся палиндромы разной длины
+        System.out.printf("Тест 7: Чередующиеся палиндромы\n");
+        String alternatingTest = "aba" + "cddc" + "efgfe" + "hijklkjih" + "mnopqponm" + "rstuvwxwvutsr";
+        testPalindrome(alternatingTest, "Чередующиеся палиндромы");
+        
+        // ТЕСТ 8: Почти-палиндром (отличается одним символом в середине)
+        System.out.printf("Тест 8: Почти-палиндром\n");
+        String almostPalindrome = "abcdefghijklmnopqXstuvwxyzzyxwvutsrqponmlkjihgfedcba";
+        testPalindrome(almostPalindrome, "Почти-палиндром");
+        
+        // ТЕСТ 9: Пустые строки и null
+        System.out.printf("Тест 9: Граничные случаи\n");
+        testPalindrome("", "Пустая строка");
+        testPalindrome("a", "Один символ");
+        testPalindrome("ab", "Два разных символа");
+        testPalindrome("aa", "Два одинаковых символа");
+        
+        // ТЕСТ 10: Смешанные языки и символы
+        System.out.printf("Тест 10: Многоязычный тест\n");
+        String multilangTest = "EnglishсилиГнЭhsilgnE中文字符符字文中ΕλληνικάάκινηλλΕ";
+        testPalindrome(multilangTest, "Многоязычный");
+        
+        // ТЕСТ 11: Производительность на чередующихся символах
+        System.out.printf("Тест 11: Производительность на чередующихся символах\n");
+        StringBuilder alternatingPerf = new StringBuilder();
         for (int i = 0; i < 1_000_000; i++) {
-            sb.append('y');
+            alternatingPerf.append(i % 2 == 0 ? "a" : "b");
         }
+        testPalindrome(alternatingPerf.toString(), "Чередующиеся символы (1M)");
         
-        // Палиндром из 'y' с центром
-        int yStart = sb.length() - 500_000;
-        sb.replace(yStart, yStart + 1, "Z"); // Центр другого регистра
+        // ТЕСТ 12: СУПЕР-СЛОЖНЫЙ: Матрёшка палиндромов
+        System.out.printf("Тест 12: СУПЕР-СЛОЖНЫЙ - Матрёшка палиндромов\n");
+        String matryoshka = buildMatryoshkaPalindrome(5, 1000);
+        testPalindrome(matryoshka, "Матрёшка палиндромов");
         
-        // 500k 'z'
-        for (int i = 0; i < 500_000; i++) {
-            sb.append('z');
-        }
+        System.out.printf("\n=== ВСЕ ГИПЕР-СЛОЖНЫЕ ТЕСТЫ ЗАВЕРШЕНЫ ===\n");
+    }
+
+    private static void testPalindrome(String input, String testName) {
+        System.out.printf("Тестирую: %s (длина: %d)\n", testName, input.length());
         
-        // 5. СМЕШАННЫЕ блоки с палиндромами
-        System.out.println("Добавляем смешанные блоки...");
-        addMixedPalindromeBlock(sb, 100_000);
-        addMixedPalindromeBlock(sb, 75_000);
-        addMixedPalindromeBlock(sb, 50_000);
+        PalindromeFinder finder = new PalindromeFinder(input);
+        long startTime = System.nanoTime();
+        String result = finder.getLongestPalindrome();
+        long endTime = System.nanoTime();
         
-        // 6. ФИНАЛЬНЫЙ огромный блок с вложенными структурами
-        System.out.println("Добавляем финальный сложный блок...");
-        addComplexNestedStructure(sb, 2_000_000);
+        long duration = endTime - startTime;
+        System.out.printf("Результат: '%s' (длина: %d)\n", 
+            result.length() > 50 ? result.substring(0, 47) + "..." : result, 
+            result.length());
+        System.out.printf("Время: %s\n", nanoToString(duration));
+        System.out.printf("Производительность: %.2f символов/мс\n\n", 
+            input.length() / (duration / 1_000_000.0));
+    }
+
+    private static String buildMatryoshkaPalindrome(int levels, int baseLength) {
+        if (levels == 0) return "ЦЕНТР";
         
-        System.out.println("Экстремальный тест готов!");
+        StringBuilder sb = new StringBuilder();
+        String pattern = "abcdefghijklmnopqrstuvwxyz".substring(0, baseLength % 26);
+        
+        // Добавляем текущий уровень
+        sb.append(pattern);
+        
+        // Рекурсивно добавляем внутренние уровни
+        sb.append(buildMatryoshkaPalindrome(levels - 1, baseLength / 2));
+        
+        // Добавляем зеркальное отражение текущего уровня
+        sb.append(new StringBuilder(pattern).reverse());
+        
         return sb.toString();
     }
 
-    private static void insertPalindromeAt(StringBuilder sb, int position, String baseChar, int halfSize, String center) {
-        // Создаем палиндром: halfSize * baseChar + center + halfSize * baseChar
-        StringBuilder palindrome = new StringBuilder();
-        for (int i = 0; i < halfSize; i++) {
-            palindrome.append(baseChar);
-        }
-        palindrome.append(center);
-        for (int i = 0; i < halfSize; i++) {
-            palindrome.append(baseChar);
-        }
-        
-        // Заменяем часть строки на палиндром
-        int endPos = Math.min(position + palindrome.length(), sb.length());
-        sb.replace(position, endPos, palindrome.toString());
+    private static String nanoToString(long nanos) {
+        if (nanos < 1_000) return nanos + " ns";
+        if (nanos < 1_000_000) return String.format("%.2f μs", nanos / 1_000.0);
+        if (nanos < 1_000_000_000) return String.format("%.2f ms", nanos / 1_000_000.0);
+        return String.format("%.2f s", nanos / 1_000_000_000.0);
     }
 
-    private static void addMixedPalindromeBlock(StringBuilder sb, int size) {
-        // Создаем блок со множеством мелких палиндромов
-        StringBuilder block = new StringBuilder();
-        Random random = new Random();
-        String[] chars = {"a", "b", "c", "d", "e"};
-        
-        for (int i = 0; i < size; i += 10) {
-            if (random.nextBoolean()) {
-                // Добавляем мини-палиндром
-                String ch = chars[random.nextInt(chars.length)];
-                block.append(ch).append(ch).append(ch); // "aaa"
-                i += 2;
-            } else {
-                // Добавляем случайный символ
-                block.append(chars[random.nextInt(chars.length)]);
-            }
-        }
-        
-        sb.append(block);
-    }
-
-    private static void addComplexNestedStructure(StringBuilder sb, int totalSize) {
-        // Создаем структуру: [случайные] + [огромный палиндром] + [случайные]
-        Random random = new Random();
-        
-        // 25% случайных символов
-        int randomPart = totalSize / 4;
-        for (int i = 0; i < randomPart; i++) {
-            sb.append((char)('a' + random.nextInt(26)));
-        }
-        
-        // 50% - огромный палиндром из смешанных символов
-        int palindromeSize = totalSize / 2;
-        StringBuilder palindrome = new StringBuilder();
-        for (int i = 0; i < palindromeSize / 2; i++) {
-            char ch = (char)('a' + (i % 5)); // Циклично a,b,c,d,e
-            palindrome.append(ch);
-        }
-        String center = "ULTIMATE_CENTER";
-        palindrome.append(center);
-        // Добавляем реверс
-        for (int i = palindromeSize / 2 - 1; i >= 0; i--) {
-            char ch = (char)('a' + (i % 5));
-            palindrome.append(ch);
-        }
-        sb.append(palindrome);
-        
-        // Оставшиеся 25% - случайные символы
-        for (int i = 0; i < totalSize - randomPart - palindrome.length(); i++) {
-            sb.append((char)('a' + random.nextInt(26)));
-        }
-    }
-
-    // Метод для экстремального теста производительности
-    public static void extremePerformanceTest() {
-        System.out.println("=== ЭКСТРЕМАЛЬНЫЙ ТЕСТ ПРОИЗВОДИТЕЛЬНОСТИ ===");
-        
-        String extremeString = generateExtremeTestString();
-        
-        System.out.println("Общая длина строки: " + extremeString.length() + " символов");
-        System.out.println("Это примерно " + (extremeString.length() / 1_000_000.0) + " миллионов символов");
-        
-        PalindromeFinder pf = new PalindromeFinder(extremeString);
-        
-        System.out.println("\n🚀 ЗАПУСК ЭКСТРЕМАЛЬНОГО ТЕСТА...");
-        System.out.println("Ожидаемый самый длинный палиндром: 5 миллионов символов 'x'");
-        
-        long startTime = System.currentTimeMillis();
-        String result = pf.getLongestPalindrome();
-        long endTime = System.currentTimeMillis();
-        
-        long duration = endTime - startTime;
-        
-        System.out.println("\n🎯 РЕЗУЛЬТАТЫ:");
-        System.out.println("⏱️ Время выполнения: " + duration + " мс (" + (duration/1000.0) + " сек)");
-        System.out.println("📏 Длина найденного палиндрома: " + result.length());
-        System.out.println("🔤 Первые 30 символов: " + result.substring(0, Math.min(30, result.length())));
-        System.out.println("📊 Производительность: " + (extremeString.length() / Math.max(duration, 1)) + " символов/мс");
-        
-        // Проверка корректности (только для небольших результатов)
-        if (result.length() < 1000) {
-            boolean isPalindromeResult = pf.isPalindrome(result);
-            System.out.println("✅ Корректность: " + isPalindromeResult);
-        } else {
-            System.out.println("✅ Результат слишком большой для полной проверки");
-        }
-    }
-
-
-    //++++ EXTERN END ++++ 
+    
+    
     private static void printTestResult( final String testResult ){
         if( null != testResult ){
             System.out.printf( "\"%s\" -> length=%d\n",  testResult, testResult.length() );

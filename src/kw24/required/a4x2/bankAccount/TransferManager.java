@@ -10,4 +10,4 @@ public class TransferManager {
         }
         else System.out.printf("Ungültiger Vorgang: Sie können kein Geld auf dasselbe Konto überweisen.%n");
     }
-}
+} 

@@ -3,14 +3,14 @@ package kw24.required.v4x2.thingy.internalThingySupport;
 
 
 import java.io.Serializable;
-import stuffBeginnersDontHaveToUnderstand.random.RandomBasedOnPRBS64;
-import stuffBeginnersDontHaveToUnderstand.random.RandomBasedOnUtilRandom;
-import stuffBeginnersDontHaveToUnderstand.random.RandomGenerator;
-import stuffBeginnersDontHaveToUnderstand.Version;
-import thingy.Color;
-import thingy.Item;
-import thingy.Size;
-import thingy.Weight;
+import kw24.required.v4x2.stuffBeginnersDontHaveToUnderstand.random.RandomBasedOnPRBS64;
+import kw24.required.v4x2.stuffBeginnersDontHaveToUnderstand.random.RandomBasedOnUtilRandom;
+import kw24.required.v4x2.stuffBeginnersDontHaveToUnderstand.random.RandomGenerator;
+import kw24.required.v4x2.stuffBeginnersDontHaveToUnderstand.Version;
+import kw24.required.v4x2.thingy.Color;
+import kw24.required.v4x2.thingy.Item;
+import kw24.required.v4x2.thingy.Size;
+import kw24.required.v4x2.thingy.Weight;
 
 
 /**

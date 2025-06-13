@@ -44,7 +44,7 @@ public class BankAccount {
 
     // getter und setter
 
-    public Long getAccountBalance() {
+    public long getAccountBalance() {
         return guthaben;
     }
 

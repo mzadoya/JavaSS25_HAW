@@ -20,7 +20,7 @@ public class CurrentAccount extends BankAccount {
     @Override
     public void withdraw(long sumToTake) {
         
-        if (this.getAccountBalance() > sumToTake + transferFee) {
+        if (this.getAccountBalance() >= sumToTake + transferFee) {
             this.guthaben -= sumToTake + transferFee;
         } else {
             System.out.printf(
@@ -44,5 +44,4 @@ public class CurrentAccount extends BankAccount {
     public void setTransferFee(int transferFee) {
         this.transferFee = transferFee;
     }
-
 }
