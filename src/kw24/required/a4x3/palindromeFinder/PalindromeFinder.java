@@ -1,7 +1,5 @@
 package kw24.required.a4x3.palindromeFinder;
 
-import java.util.Objects;
-
 public class PalindromeFinder {
 
     String stringToCheck;
@@ -44,8 +42,12 @@ public class PalindromeFinder {
                 pos2 = pos1 + 1;
             }
         }
-
-        if (longestPalindrome.length() > stringToCheck.length() / 2) {
+        
+        if (pos2 - pos1 > longestPalindrome.length()) {
+            longestPalindrome = stringToCheck.substring(pos1, pos2);
+        }
+        
+        if (longestPalindrome.length() > stringToCheck.length() * 0.6) {
             return longestPalindrome;
         }
 

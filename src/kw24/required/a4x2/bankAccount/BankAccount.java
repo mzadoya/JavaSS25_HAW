@@ -1,6 +1,6 @@
 package kw24.required.a4x2.bankAccount;
 
-public class BankAccount {
+abstract class BankAccount {
 
     String iban;
     long guthaben;
