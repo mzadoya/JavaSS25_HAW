@@ -14,24 +14,25 @@ abstract class BankAccount {
         if (iban == null) {
             assert (false) : "+++FATAL SYSTEM ERROR: IBAN darf nicht null sein +++";
         }
-        
+
         this.iban = iban;
         this.guthaben = guthaben;
-   
+
     }
 
     public void withdraw(long sumToTake) {
-        
-        if (sumToTake <= 0 ) {
+
+        if (sumToTake <= 0) {
             System.out.printf("Ungültiger Betrag: Es kann kein negativer oder null Betrag abgebucht werden.%n");
         }
-        
+
         if (this.guthaben > sumToTake && sumToTake > 0) {
             this.guthaben -= sumToTake;
-        }
-        else {
-            System.out.printf("Bankkonto: %s%nUnzureichender Kontostand: Die Aktion kann nicht durchgeführt werden.%n%.2f - %.2f --> %.2f%n",
-            iban, (double) this.guthaben / 100, (double) sumToTake / 100, (double) (this.guthaben - sumToTake) / 100);
+        } else {
+            System.out.printf(
+                    "Bankkonto: %s%nUnzureichender Kontostand: Die Aktion kann nicht durchgeführt werden.%n%.2f - %.2f --> %.2f%n",
+                    iban, (double) this.guthaben / 100, (double) sumToTake / 100,
+                    (double) (this.guthaben - sumToTake) / 100);
         }
     }
 
