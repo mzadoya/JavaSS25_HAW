@@ -58,5 +58,9 @@ abstract class BankAccount {
     }
 
     // toString
-
+    
+    @Override
+    public String toString() {
+        return "BankAccount [iban=" + iban + ", guthaben=" + guthaben + "]";
+    }
 }

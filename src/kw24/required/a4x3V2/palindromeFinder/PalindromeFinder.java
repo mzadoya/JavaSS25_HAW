@@ -2,13 +2,14 @@ package kw24.required.a4x3V2.palindromeFinder;
 
 public class PalindromeFinder {
 
-    String stringToCheck;
+    private String stringToCheck;
 
     public PalindromeFinder() {
         this("");
     }
 
     public PalindromeFinder(String stringToCheck) {
+        // TODO Alle Parameter prüfen => assert
         this.stringToCheck = stringToCheck;
     }
 
@@ -19,32 +20,20 @@ public class PalindromeFinder {
     }
 
     public String getText() {
-
         return this.stringToCheck;
     }
 
+    // TODO boolean istPalindrome(String text)
     public String getLongestPalindrome() {
         String longestPalindrome = "";
         int aktuelleLangeMuster = stringToCheck.length();
 
         while (aktuelleLangeMuster >= 1) {
             for (int i = 0; i <= stringToCheck.length() - aktuelleLangeMuster; i++) {
-                
-                int left = i;
-                int right = aktuelleLangeMuster - 1 + i;
-                boolean isSubstringPalindrome = true;
+                String substring = stringToCheck.substring(i, aktuelleLangeMuster + i);
 
-                while (left < right) {
-                    if (Character.toLowerCase(stringToCheck.charAt(left)) != Character.toLowerCase(stringToCheck.charAt(right))) {
-                        isSubstringPalindrome = false;
-                        break;
-                    }
-                    left++;
-                    right--;
-                }
-
-                if (isSubstringPalindrome) {
-                    longestPalindrome = stringToCheck.substring(i, aktuelleLangeMuster + i);
+                if (isPalindrome(substring)) {
+                    longestPalindrome = substring;
                     return longestPalindrome;
                 }
             }
@@ -54,4 +43,16 @@ public class PalindromeFinder {
         return longestPalindrome;
     }
 
+    private boolean isPalindrome(String subStringToCheck) {
+        int left = 0;
+        int right = subStringToCheck.length() - 1;
+        while (left < right && Character.toLowerCase(subStringToCheck.charAt(left)) ==
+                Character.toLowerCase(subStringToCheck.charAt(right))) {
+           
+            left++;
+            right--;
+        }
+
+        return left>=right;
+    }
 }

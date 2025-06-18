@@ -14,11 +14,8 @@ public class Hand {
 
     public Hand(Card... cards) {
 
-        this.cards = cards;
-
-        if (!hasValidCards()) {
-            assert (false) : "+++NULL ERROR >>> CARDS NOT FOUND+++";
-        }
+        setHandCards(cards);
+        
     }
 
     public void add(Card... newCards) {
@@ -69,9 +66,10 @@ public class Hand {
 
     public void setHandCards(Card... newCardsInAHand) {
         this.cards = newCardsInAHand;
+        assert hasValidCards(newCardsInAHand) : "f";
     }
 
-    public boolean hasValidCards() {
+    public boolean hasValidCards(Card...cards) {
 
         if (this.cards == null) {
             return false;
