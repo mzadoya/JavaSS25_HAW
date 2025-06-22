@@ -12,8 +12,8 @@ import java.util.*;
 /**
  * CardProcessor printing cards in reverse order - see task
  * 
- * @author (your name(s))
- * @version (a version number or a date)
+ * @author   Maksym Zadoya 
+ * @version  2025/06/21 Version 1
  */
 public class CardProcessor {
 

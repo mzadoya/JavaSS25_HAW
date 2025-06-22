@@ -3,6 +3,9 @@ package kw25.required.a5x3.cardComparator;
 
 import static kw25.required.a5x3.cards.Card.*;
 import static kw25.required.a5x3.cards.Card.Constant.*;
+
+import java.util.*;
+
 import kw25.required.a5x3.cards.*;
 import kw25.required.a5x3.cards.Card.*;
 
@@ -10,22 +13,26 @@ import kw25.required.a5x3.cards.Card.*;
 /**
  * Comparator for Cards defining "usual order"
  * 
- * @author   (your name(s)) 
- * @version  (a version number or a date)
+ * @author   Maksym Zadoya 
+ * @version  2025/06/22 Version 1
  */
-// Klasse "UsualOrder"
-//
-// HHH      HHH   III   EEEEEEEEEEEE   RRRRRRRRRRR          <<<                                  !!!
-// HHH      HHH   III   EEEEEEEEEEEE   RRRRRRRRRRRR        <<<                                   !!!
-// HHH      HHH   III   EEE            RRR      RRR       <<<                                    !!!
-// HHH      HHH   III   EEE            RRR      RRR      <<<                                     !!!
-// HHHHHHHHHHHH   III   EEEEEEEEEEEE   RRRRRRRRRRR      <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<     !!!
-// HHHHHHHHHHHH   III   EEEEEEEEEEEE   RRRRRRRRRR       <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<     !!!
-// HHH      HHH   III   EEE            RRR   RRR         <<<                                     !!!
-// HHH      HHH   III   EEE            RRR    RRR         <<<
-// HHH      HHH   III   EEEEEEEEEEEE   RRR     RRR         <<<                                   !!!
-// HHH      HHH   III   EEEEEEEEEEEE   RRR      RRR         <<<                                  !!!
-//
-// Fügen Sie hier Ihren Code ein
-// bzw. ersetzen Sie diesen Kommentar durch Ihren Code.
-// ...
+public class UsualOrder implements Comparator<Card> {
+
+    @Override
+    public int compare(Card card1, Card card2) {
+        if (card1.getRank().ordinal() > card2.getRank().ordinal()) {
+            return -1;
+        } else if (card1.getRank().ordinal() < card2.getRank().ordinal()) {
+            return 1;
+        } else {  //wenn die Karten den gleichen Rank haben, sollten beide nach Farbe sortiert werden
+            if (card1.getSuit().ordinal() > card2.getSuit().ordinal()) {
+                return -1;
+            } else if (card1.getSuit().ordinal() < card2.getSuit().ordinal()) {
+                return 1;
+            } else
+                return 0;
+        }
+
+    }
+
+}

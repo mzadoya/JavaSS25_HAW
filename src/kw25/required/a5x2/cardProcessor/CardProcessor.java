@@ -12,8 +12,8 @@ import java.util.*;
 /**
  * CardProcessor removing duplicates - see task
  * 
- * @author   (your name(s)) 
- * @version  (a version number or a date)
+ * @author   Maksym Zadoya 
+ * @version  2025/06/21 Version 1
  */
 public class CardProcessor {
     
@@ -33,11 +33,10 @@ public class CardProcessor {
      for (Card c : cards) {   //Speichern jede Karte in Set, dabei kann Set keine Duplicaten enthalten 
      einzigartigeKarten.add(c);
      }
-     Card[] cardsArray = einzigartigeKarten.toArray(new Card[einzigartigeKarten.size()]);  //Nachdem Karten sortiert sind werden sie in einem neuen Array gespeichert und zurückgegeben 
+     Card[] cardsArray = einzigartigeKarten.toArray(new Card[einzigartigeKarten.size()]);  //Nachdem alle doppelten Karten ignoriert wurde, werden einzigartige Karten gespeichert 
       
      return cardsArray;
   }
-    
     /**
      * Die Methode isKartenNull() überprüft, ob das ganze übergebene Array über Karten null ist 
      * oder das eine beliebige Stelle den Wert null enthäht.

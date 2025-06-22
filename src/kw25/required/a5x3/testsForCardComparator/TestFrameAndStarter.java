@@ -1,6 +1,6 @@
 // This source code is UTF-8 coded - see https://stackoverflow.com/questions/9180981/how-to-support-utf-8-encoding-in-eclipse
 package kw25.required.a5x3.testsForCardComparator;
-
+import kw25.required.a5x3.cardComparator.UsualOrder; // wichtig
 
 import static kw25.required.a5x3.cards.Card.*;
 import static kw25.required.a5x3.cards.Card.Constant.*;
@@ -76,7 +76,7 @@ public class TestFrameAndStarter {
         // Anfang des eigentlichen Tests
         //==============================
         
-        /*
+        
         final Deck deck = new Deck();
         final int randomNumber = 1+ (int)( 52*Math.random() );
         final List<Card> list = new ArrayList<Card>();
@@ -88,7 +88,7 @@ public class TestFrameAndStarter {
         System.out.println( list );
         Collections.sort( list, usualOrder );
         System.out.println( list );
-        */
+        
         //----------------------------------------------------------------------// "MARKIERUNG" ;-)
         // Ab hier dürfen Sie eigene Tests ergänzen
         

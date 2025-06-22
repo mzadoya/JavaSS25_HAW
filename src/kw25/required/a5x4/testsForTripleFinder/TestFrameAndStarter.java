@@ -7,7 +7,7 @@ import kw25.required.a5x4.stuffBeginnersDontHaveToUnderstand.EnvironmentAnalyzer
 import kw25.required.a5x4.stuffBeginnersDontHaveToUnderstand.GivenCodeVersion;
 import kw25.required.a5x4.stuffBeginnersDontHaveToUnderstand.Version;
 //import tripleFinder.CardProcessor;
-import kw25.required.a5x4.tripleFinder.CardProcessor_I;
+import kw25.required.a5x4.tripleFinder.*;
 
 
 /**
@@ -71,7 +71,7 @@ import kw25.required.a5x4.tripleFinder.CardProcessor_I;
         
         // Anfang des eigentlichen Tests
         //==============================
-        /*
+        
         final boolean dbgOutputEnable = true;
         
         
@@ -125,7 +125,7 @@ import kw25.required.a5x4.tripleFinder.CardProcessor_I;
         }//while
         if( dbgOutputEnable )  System.out.printf( "\n==>> " );
         System.out.printf( "%s\n", result );
-        */
+        
         //----------------------------------------------------------------------// "MARKIERUNG" ;-)
         // Ab hier dürfen Sie eigene Tests ergänzen
         
