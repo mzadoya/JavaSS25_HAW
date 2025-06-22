@@ -14,11 +14,19 @@ import kw25.required.a5x3.cards.Card.*;
  * Comparator for Cards defining "usual order"
  * 
  * @author   Maksym Zadoya 
- * @version  2025/06/22 Version 1
+ * @version  2025/06/23 Version 1
  */
 public class UsualOrder implements Comparator<Card> {
 
     @Override
+    /**
+     * @return card1 > card2 : card1 nach links 
+     * @return card1 < card2 : card1 nach rechts 
+     * @return card1 = card2 : check Farbe 
+     */
+    
+    //TODO check ob in richtiger Reihenfolge alles (nach Aufgabestellung)
+    
     public int compare(Card card1, Card card2) {
         if (card1.getRank().ordinal() > card2.getRank().ordinal()) {
             return -1;

@@ -21,13 +21,18 @@ public class CardProcessor implements CardProcessor_I {
     Card card;
 
     Map<Card.Rank, Set<Card>> kartenMap = new HashMap<Card.Rank, Set<Card>>();
-
+    
+    /**
+     * Parameterloser Konstruktor 
+     */
     public CardProcessor() {
 
     }
 
     /**
-     * @return
+     * @version 2025/06/22 #1
+     * @param card    Die übergebene in Methode Karte, die verarbeited werden muss
+     * @return Ein aus 3 Karten bestehendes Array, wenn ein Drilling vorliegt, sonst {@code null}
      */
     @Override
     public Object process(final Card card) {
@@ -53,7 +58,13 @@ public class CardProcessor implements CardProcessor_I {
                 kartenBack[i++] = c;
             }
             kartenMap.get(card.getRank()).clear();
-            return Arrays.toString(kartenBack);
+            
+            //TODO fix or find a solutioon or its ok...?
+            System.out.printf("%n %n");   
+            System.out.println(Arrays.toString(kartenBack));
+            
+            
+            return kartenBack;
         } else
             return null;
     }
@@ -69,11 +80,12 @@ public class CardProcessor implements CardProcessor_I {
     }
 
     /**
-     * @return card, kartenMap
+     * @return Klassenname mit card und kartenMap im Form eines Strings
      */
     @Override
     public String toString() {
         return kartenMap.getClass() + "[card=" + card + ", kartenMap=" + kartenMap + "]";
     }
 
+    
 }
