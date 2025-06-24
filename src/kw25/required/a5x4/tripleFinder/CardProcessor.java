@@ -13,14 +13,12 @@ import kw25.required.a5x4.stuffBeginnersDontHaveToUnderstand.*;
 
 /**
  * @author Maksym Zadoya
- * @version 2025/06/22 Version 1
+ * @version 2025/06/24 Version 1
  */
 
 public class CardProcessor implements CardProcessor_I {
 
-    Card card;
-
-    Map<Card.Rank, Set<Card>> kartenMap = new HashMap<Card.Rank, Set<Card>>();
+    final Map<Card.Rank, Set<Card>> kartenMap = new HashMap<Card.Rank, Set<Card>>();
     
     /**
      * Parameterloser Konstruktor 
@@ -41,9 +39,7 @@ public class CardProcessor implements CardProcessor_I {
         
         if (!kartenMap.containsKey(card.getRank())) { // Check ob ein Set für dieses Key schon exestiert
             kartenMap.put(card.getRank(), new HashSet<>()); // Falls nicht --> new Set für dieses Key erstellen
-        }
-        kartenMap.get(card.getRank()).add(card); // Karte speichern
-
+        } kartenMap.get(card.getRank()).add(card); // Karte speichern
         /*
          * if (kartenMap.get(card.getRank()).size() == 3) { //Fall 3 Karten mit dem
          * gleichen Rank schon übergeben worden sind 
@@ -58,13 +54,13 @@ public class CardProcessor implements CardProcessor_I {
                 kartenBack[i++] = c;
             }
             kartenMap.get(card.getRank()).clear();
-            
-            //TODO fix or find a solutioon or its ok...?
-            System.out.printf("%n %n");   
-            System.out.println(Arrays.toString(kartenBack));
-            
-            
+
+            // TODO fix or find a solutioon or its ok...?
+            System.out.printf("%n %n");
+            System.out.println(Arrays.toString(kartenBack)); // Debug output
+
             return kartenBack;
+            
         } else
             return null;
     }
@@ -76,15 +72,14 @@ public class CardProcessor implements CardProcessor_I {
     @Override
     public void reset() {
         kartenMap.clear();
-        this.card = null;
     }
 
     /**
-     * @return Klassenname mit card und kartenMap im Form eines Strings
+     * @return Klassenname mit kartenMap im Form eines Strings
      */
     @Override
     public String toString() {
-        return kartenMap.getClass() + "[card=" + card + ", kartenMap=" + kartenMap + "]";
+        return this.getClass() + "[kartenMap=" + kartenMap + "]";
     }
 
     

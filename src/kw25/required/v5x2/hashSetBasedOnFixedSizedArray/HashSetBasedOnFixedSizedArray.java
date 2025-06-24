@@ -24,7 +24,8 @@ package kw25.required.v5x2.hashSetBasedOnFixedSizedArray;
 
  
 import java.util.*;
-import stuffBeginnersDontHaveToUnderstand.Version;
+
+import kw25.required.v5x2.stuffBeginnersDontHaveToUnderstand.Version;
 
 
 /**

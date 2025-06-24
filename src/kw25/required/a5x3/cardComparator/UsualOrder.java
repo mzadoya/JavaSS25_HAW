@@ -52,14 +52,14 @@ public class UsualOrder implements Comparator<Card> {
                     break;
                     
                 case 2:
-                    if (card2.getSuit().ordinal() == 1) {
+                    if (card2.getSuit().ordinal() == 1) { // DIAMOND.ordinal = 1 >> DIAMOND soll ganz rechts sein
                         result = -1;
                     } else
                         result = 1;
                     break;
                     
                 case 3:
-                    if (card2.getSuit().ordinal() != 0) {
+                    if (card2.getSuit().ordinal() != 0) { // CLUB.ordinal = 0 >> CLUB soll ganz links sein
                         result = -1;
                     } else
                         result = 1;
