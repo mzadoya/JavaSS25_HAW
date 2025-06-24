@@ -30,7 +30,7 @@ public class CardProcessor implements CardProcessor_I {
     }
 
     /**
-     * @version 2025/06/22 #1
+     * @version 2025/06/23 #1
      * @param card    Die übergebene in Methode Karte, die verarbeited werden muss
      * @return Ein aus 3 Karten bestehendes Array, wenn ein Drilling vorliegt, sonst {@code null}
      */

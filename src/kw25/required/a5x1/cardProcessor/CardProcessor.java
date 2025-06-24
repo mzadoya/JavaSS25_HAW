@@ -32,19 +32,20 @@ public class CardProcessor {
         assert cardToCheck != null : "Karte ist null";
         System.out.println("#####################START#####################");
         Card card;
-        do {       //ziehen Karte, bis die gesuchte Karte gefunden ist oder kleiner als 52 Karten genommen ist (Sicherheit)
-            card = deck.deal(); 
-            assert card!=null : "Deck ist leer!";
+        do { // ziehen Karte, bis die gesuchte Karte gefunden ist oder kleiner als 52 Karten
+             // genommen ist (Sicherheit)
+            card = deck.deal();
+            assert card != null : "Deck ist leer!";
             kartenStapel.add(card);
             if (kartenAusgeben) {
                 System.out.println(card);
             }
         } while (!card.equals(cardToCheck) && kartenStapel.size() < 52);
 
-        if (kartenStapel.contains(cardToCheck)) { //Sicherheit > Check, dass Karte gefunden wurde 
+        if (kartenStapel.contains(cardToCheck)) { // Sicherheit > Check, dass Karte gefunden wurde
             System.out.printf("gesuchte Karte %s ist gefunden! %n", cardToCheck);
 
-            while (!kartenStapel.isEmpty()) {  //nehmen die oberste Karte aus dem kartenStapel bis Stapel leer ist
+            while (!kartenStapel.isEmpty()) { // nehmen die oberste Karte aus dem kartenStapel bis Stapel leer ist
                 System.out.println(kartenStapel.pop());
             }
         } else {
