@@ -3,6 +3,7 @@ package kw25.required.a5x4.tripleFinder;
 
 
 import static kw25.required.a5x4.cards.Card.*;
+
 import static kw25.required.a5x4.cards.Card.Constant.*;
 //
 import kw25.required.a5x4.cards.*;

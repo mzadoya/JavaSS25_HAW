@@ -104,6 +104,9 @@ public class TestFrameAndStarter99_forActualTesting {
     // Dadurch wird die Typsicherheit "so gut es geht" sichergestellt.
     // Für das Verständnis des Algorithmus ist dies nicht wichtig.
     
+
+    //VVVVVVVVV   
+    
     private static void printInternalStructure( final Set<?> set ){
         assert set instanceof HashSetBasedOnFixedSizedArray :  String.format( "Unsupported operation for %s",  set.getClass().getSimpleName() );
         //

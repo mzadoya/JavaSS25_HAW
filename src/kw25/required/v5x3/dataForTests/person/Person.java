@@ -3,7 +3,8 @@ package kw25.required.v5x3.dataForTests.person;
 
 
 import java.util.Objects;
-import stuffBeginnersDontHaveToUnderstand.Version;
+
+import kw25.required.v5x3.stuffBeginnersDontHaveToUnderstand.Version;
 
 
 /**

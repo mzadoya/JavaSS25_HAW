@@ -46,13 +46,13 @@ public class PalindromeFinder {
     private boolean isPalindrome(String subStringToCheck) {
         int left = 0;
         int right = subStringToCheck.length() - 1;
-        while (left < right && Character.toLowerCase(subStringToCheck.charAt(left)) ==
-                Character.toLowerCase(subStringToCheck.charAt(right))) {
-           
+        while (left < right && Character.toLowerCase(subStringToCheck.charAt(left)) == Character
+                .toLowerCase(subStringToCheck.charAt(right))) {
+
             left++;
             right--;
         }
 
-        return left>=right;
+        return left >= right;
     }
 }

@@ -48,7 +48,7 @@ public class Po {
         
         // Objekt-Referenz-Variaben-Werte vergleichen                           // Vergleich der Attribute
         if( ! Objects.equals( surname,  other.surname ))  return false;
-        if( ! Objects.equals( forename, other.forename )) return false;
+        if( ! Objects.equals( forename, other.forename )) return false;   //VVVVVV
         
         return true;                                                            // KEINE "Erbmasse" muss verglichen werden => fertig
      }//method()
