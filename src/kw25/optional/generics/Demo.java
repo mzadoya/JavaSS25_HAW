@@ -12,6 +12,8 @@ public class Demo {
      * Methoden, die den konkreten Datentyp unterstützen. Grob gesagt - in Generic kann man
      * alles rein schmeissen, nun muss explicit gesagt werden was genau reingeschmissen wird. 
      * 
+     * Problematik 1 verdeutlicht dieses Problem 
+     * 
      * - Genetische Typen existieren nur zur Compilezeit - sie werden in Rohtypen übersetzt
      * 
      * - Typsicherheit - wenn beide Typen nicht zuweisungskompatibel sind, beisp. String zu Integer gibt
@@ -30,7 +32,11 @@ public class Demo {
      * -Wenn man noch mit Collection unsicher ist, ob man List, Set, Queue benutzen wird, schreibt man einfach Collection da vorne 
      * und kann im Prinzip alles benutzen und ändern. Dabei muss aber gegen ein Interface implementiert werden. S, Stelle 6 
      * 
-     * Problematik 1 verdeutlicht dieses Problem 
+     * - Man kann ein Array über Generic nicht direkt erstellen, dadurch macht man das mit wie mit Object S. Stelle 7
+     * 
+     * - Zuweisungskompatibel sind nicht alle Generics. Sogar an der Stellen, wo es nicht erwartet wird, z. B.
+     * {@code B3<Integer> by = new U3<Short>(); <-- nicht Zuweisungkompatibel 
+     * B3<Integer> bx = new U3<Integer>() <-- ok
      * 
      * @author Maksym Zadoya
      * @version 2025/06/26 #1
@@ -195,9 +201,11 @@ public class Demo {
         
         somethingToSave = new HashSet <>();
         
-        //Nächste Woche ist Sortierung doch wieder wichtig und Eigenschaften von Queue nötig sind
+        //Nächste Woche ist Sortierung doch wieder wichtig und Eigenschaften von Queue
         
         somethingToSave = new  PriorityQueue<>();
+        
+
     } 
     
     
@@ -270,4 +278,19 @@ public class Demo {
     public static void printList(List<?> myList) {
         System.out.println(myList);
     }
+   
+    /**
+     * Stelle 7
+     * 
+     * @param <T>
+     */
+   public static <T> void genericArray() {    
+       /* Fehler!!!! ->   T[] arr = new T[size];  */
+    
+    //Korrekt wäre
+    T[] arr = (T[]) new Object[1];
+    
+    //beispiel 2
+    List<String>[] a = (List<String>[]) new List[10];
+   }
 }
