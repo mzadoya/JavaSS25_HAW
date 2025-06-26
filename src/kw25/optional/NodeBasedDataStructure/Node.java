@@ -49,12 +49,6 @@ public class Node {
     }
     
     //noch Beispiele 
-    
-    public int find(int n) {
-        
-          
-        
-    }
 
 }
  
