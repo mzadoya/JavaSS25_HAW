@@ -9,7 +9,7 @@ import java.util.*;
 
 public class WordCounter {
 
-    final Map<Word, Counter> wordSpeicher;
+    private final Map<Word, Counter> wordSpeicher;
     WordGrabber wg;
 
     /**
