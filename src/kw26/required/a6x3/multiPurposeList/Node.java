@@ -1,5 +1,11 @@
 package kw26.required.a6x3.multiPurposeList;
 
+/**
+ * 
+ * @author Maksym Zadoya
+ * @version 2025/06/30 #2
+ * 
+ */
 public class Node<T> {
 
     private Node<T> next;

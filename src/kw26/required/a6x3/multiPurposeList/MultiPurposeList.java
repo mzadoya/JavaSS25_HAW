@@ -2,6 +2,15 @@ package kw26.required.a6x3.multiPurposeList;
 
 import kw26.required.a6x3.multiPurposeList.MultiPurposeList_I;
 
+import kw26.required.a6x3.stuffBeginnersDontHaveToUnderstand.Version;
+
+
+/**Final Boss Aufgabe HAW SS25 S1 PT
+ * 
+ * @author Maksym Zadoya
+ * @version 2025/06/30 #2
+ * @param <T>
+ */
 public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
 
     private Node<T> head;
@@ -20,39 +29,46 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
     }
     //TODO putNo komplett Fix
     @Override
+    /**
+     * 
+     * @author Maksym Zadoya
+     * @version 2025/06/30 #2
+     * 
+     */
     public void putNo(int number, T data) {
-      
-        
-        Node<T> nextData = iGetNodeNo(number);
-            Node<T> newNode = new Node<T>(data);
-            if (isEmpty()) {
+
+        Node<T> newNode = new Node<T>(data);
+
+        if (isEmpty()) {
+            head = newNode;
+            tail = newNode;
+        } else {
+            
+            if (number == 0) {
+                head.setPrevNode(newNode);
+                newNode.setNextNode(head);
                 head = newNode;
+            }
+
+            else if (number == getSize()) {
+                tail.setNextNode(newNode);
+                newNode.setPrevNode(tail);
                 tail = newNode;
             }
-           
-            else if(nextData.getPrevNode() == null && nextData.getNextNode() != null) {
-                head = newNode;
-                head.setPrevNode(null);
-                head.setNextNode(nextData);
-                nextData.setPrevNode(newNode);
-            }
-            
-            else if(nextData.getPrevNode() != null && nextData.getNextNode() == null) {
-                tail = newNode;ф
-                tail.setNextNode(null);
-                tail.setPrevNode(newNode);
-                nextData.setNextNode(newNode);
-            }
-            
+
             else {
+                Node<T> nextData = iGetNodeNo(number);
                 nextData.getPrevNode().setNextNode(newNode);
-                nextData.setPrevNode(newNode);;
+                nextData.setPrevNode(newNode);
                 newNode.setNextNode(nextData);
                 newNode.setPrevNode(nextData.getPrevNode());
+                
             }
+        }
     }
 
     @Override
+    
     public T setNo(int number, T data) {
         T toReturn = iGetNodeNo(number).getData();
         iGetNodeNo(number).setData(data);
@@ -102,15 +118,26 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
         return (iSearchNode(data) == null) ? false : true;
     }
 
+    /**
+     * 
+     * @author Maksym Zadoya
+     * @version 2025/06/30 #2
+     * 
+     */
     private Node<T> iSearchNode(T data) {
         assert head != null : "Liste hat keinen Parameter!";
         Node<T> nodeToReturn = head;
-        while (nodeToReturn.getData().equals(data) || nodeToReturn != null) { //TODO equals pruefen
+        while (nodeToReturn != null && !nodeToReturn.getData().equals(data)) { //TODO equals pruefen
             nodeToReturn = nodeToReturn.getNextNode();
         }
         return nodeToReturn;
     }
-
+    /**
+     * 
+     * @author Maksym Zadoya
+     * @version 2025/06/30 #2
+     * 
+     */
     private Node<T> iGetNodeNo(int number) {
         int positionInListeCounter = 0;
         assert head != null : "Liste hat keinen Parameter!";
@@ -122,10 +149,19 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
         }
         return nodeToReturn;
     }
-
-    //TODO vllt Struktur verbessern 
+ 
+    /**
+     * 
+     * @author Maksym Zadoya
+     * @version 2025/06/30 #2
+     * 
+     */
     private boolean iRemoveNode(Node<T> node) {
 
+        if (node == null || node.getData().equals(null)) {
+            return false;
+        }
+        
         if (isEmpty()) {
             return false;
         }
