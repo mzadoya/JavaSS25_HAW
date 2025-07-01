@@ -39,6 +39,10 @@ import kw26.required.a6x3.media.DVD;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
+import static org.junit.Assert.fail;
+
+
+import java.util.Random;
 
 //###
 //###   Weiterhin muss multiPurposeList.MultiPurposeList<T> implementiert werden.
@@ -1260,8 +1264,83 @@ public class UnitTestFrameAndStarter {
         listToTest.putNo(2, newCDClub);
         listToTest.putNo(3, newCDJazz);
         
-        assertNotNull(listToTest.getNo(listToTest.getSize()+1));
+        try {
+            listToTest.getNo(listToTest.getSize()+1);
+            fail("Fehler wurde nicht geworfen!! Bro something ist scheisse mit deinem Code! Nicht chillig!!!");
+        }
+        catch (AssertionError e) {
+           
+        }
+        
+        try {
+            listToTest.getNo(listToTest.getSize()-1);
+            fail("Fehler wurde nicht geworfen!! Bro something ist scheisse mit deinem Code! Nicht chillig!!!");
+        }
+        catch (AssertionError e) {
+           
+        }
+        
+        
+        try {
+            listToTest.getNo(listToTest.getSize()-110);
+            fail("Fehler wurde nicht geworfen!! Bro something ist scheisse mit deinem Code! Nicht chillig!!!");
+        }
+        catch (AssertionError e) {
+           
+        }
+       
     }
+   
+    @Test
+    public void istListNachDemClearWichtigLeer() {
+        
+        MultiPurposeList<DVD> listToTest = new MultiPurposeList<DVD>();
+        
+        DVD newCDRap = new DVD("Das Gefuehl", AUDIO, PAL);
+        DVD newCDPop = new DVD("Skromnost", AUDIO, PAL);
+        DVD newDVDClip = new DVD ("The Simpsong", VIDEO, PAL);
+        
+        for(int i = 0; i < 3; i++) {
+        try {
+            listToTest.getNo(i);
+            fail("Fehler wurde nicht geworfen, obwohl die Liste leer ist!! Bro something ist scheisse mit deinem Code! Nicht chillig!!!");
+        }
+        catch (AssertionError e) {
+        }
+    }
+        
+        listToTest.putNo(0, newCDRap);
+        listToTest.putNo(1, newCDPop);
+        listToTest.putNo(2, newDVDClip);
+    
+        assertEquals(newCDRap, listToTest.getNo(0));
+        assertEquals(newCDPop, listToTest.getNo(1));
+        assertEquals(newDVDClip, listToTest.getNo(2));
+
+        listToTest.clear();
+
+        for (int i = 0; i < 3; i++) {
+            try {
+                listToTest.getNo(i);
+                fail("Es wurde kein Fehler geworfen, obwohl die Liste nach clear() leer ist! Scheiss Code!!!");
+            } catch (AssertionError e) {
+            }
+        }
+    }
+    
+    @Test
+    public void tryToClearEmptyList() {
+        
+        MultiPurposeList<Byte> listToTest = new MultiPurposeList<Byte>();
+        try {
+            listToTest.clear();
+            fail("Was willstu clearen, wenn die Liste leer ist? Pass auf dein Code auf!!!");
+        }
+        catch (AssertionError e) {
+        }
+    }
+    
+    //Some Perfomance Test
     
     @Test
     public void runTimeAndPerfomanceTest() {
@@ -1271,22 +1350,52 @@ public class UnitTestFrameAndStarter {
         for (int i = 0; i < 10000; i ++ ) {
             listToTest.putNo(i,  UUID.randomUUID().toString());
         }
+        Random randomGenerator = new Random(); //ignorieren 
+        int upperBondForNumbers = 10000;
+        int currentPosition = 0;
+        int sizeNachOperationen = upperBondForNumbers;
+        for (int i = 0; i < 1000; i++) {
+            currentPosition = randomGenerator.nextInt(upperBondForNumbers);
+            
+            if(currentPosition%2==0) {
+                try {
+                listToTest.putNo(currentPosition, UUID.randomUUID().toString());
+                sizeNachOperationen++;
+                }
+                catch (AssertionError e) {       
+                }
+            }
+            else   { 
+                if ((currentPosition < listToTest.getSize())) {
+                    try {
+                listToTest.removeNo(currentPosition); 
+                sizeNachOperationen--;;
+                    }
+                    catch (AssertionError e) {       
+                    }
+                }
+            }
+            
+            try {
+                listToTest.getNo(listToTest.getSize());
+                fail("Zugriff ausserhalb der Bereichs Bro!");
+            }
+            catch (AssertionError e) {
+            }
+            
+            try {
+                listToTest.getNo(-1);
+                fail("Negativer Index... das ist kacke");
+            }
+            catch (AssertionError e) {
+            }
+            
+        }
         
-        listToTest.putNo(350, UUID.randomUUID().toString());
-        listToTest.putNo(7430, UUID.randomUUID().toString());
-        listToTest.putNo(1350, UUID.randomUUID().toString());
-        listToTest.putNo(3250, UUID.randomUUID().toString());
-        listToTest.putNo(3450, UUID.randomUUID().toString());
-        
-        
-        listToTest.removeNo(392);
-        listToTest.removeNo(3192);
-        listToTest.removeNo(3942);
-        listToTest.removeNo(9392);
-        
-        assertEquals(10001, listToTest.getSize());
-        listToTest.printElemFirstToLast();
+        assertEquals(sizeNachOperationen, listToTest.getSize());
+       
     }
+    
     
 }
     

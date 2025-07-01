@@ -59,6 +59,7 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
     @Override
     public void putNo(int number, T data) {
 
+        assert number >= 0 && number <= getSize() : "Ausserhalb des gueltigen Bereich";
         Node<T> newNode = new Node<T>(data);
 
         if (isEmpty()) {
@@ -145,7 +146,6 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
             iRemoveNode(iGetNodeNo(0)); // entfernen Knoten an der Position 0 (quasi head) solange bis die Liste keine
                                         // Referenzen hat
         }
-
     }
 
     /**
@@ -258,7 +258,7 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
     }
 
     
-    //########## Nuetzliche Hilfsmethoden zum Testen########## 
+    //########## Nuetzliche Hilfsmethoden zum Testen ########## 
     
     /**
      * Gibt die in der Liste enthaltenen Informations-Objekte der Reihe nach, also
