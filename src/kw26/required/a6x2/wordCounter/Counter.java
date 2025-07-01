@@ -1,7 +1,7 @@
 package kw26.required.a6x2.wordCounter;
 
 /**
- * @author Maksym Zadoya 
+ * @author Maksym Zadoya
  * @version 2025/06/29 #1
  */
 
@@ -21,6 +21,5 @@ public class Counter {
     public String toString() {
         return "Counter [count=" + count + "]";
     }
-    
-    
+
 }

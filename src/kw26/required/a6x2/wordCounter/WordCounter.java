@@ -28,7 +28,7 @@ public class WordCounter {
      * 0 gesetzt wird.
      * 
      * @param speicherort enthält den Speicherort auf dem PC, wo die Datei mit dem
-     * Text zur Analyse liegt
+     *                    Text zur Analyse liegt
      */
     public void printStatistic(String speicherort) {
 

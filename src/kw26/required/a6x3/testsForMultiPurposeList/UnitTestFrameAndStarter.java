@@ -37,6 +37,9 @@ import kw26.required.a6x3.media.Disc;
 //import kw26.required.a6x3.version.GivenCodeVersion;
 import kw26.required.a6x3.media.DVD;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNull;
+
 //###
 //###   Weiterhin muss multiPurposeList.MultiPurposeList<T> implementiert werden.
 //###
@@ -63,6 +66,8 @@ import java.time.Duration;
 //
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
+
 //
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Order;
@@ -1213,6 +1218,75 @@ public class UnitTestFrameAndStarter {
             "computation took too long"
         );
     }//method()
+    
+    @Test
+    public void wasPassiertWennZweiElementenMitGleichenNamenGibt() {
+        
+        MultiPurposeList<String> listToTest = new MultiPurposeList<String>();
+        
+        listToTest.putNo(0, "Ich");
+        listToTest.putNo(1, "mag");
+        listToTest.putNo(2, "Kartoffel");
+        listToTest.putNo(3, "weil");
+        listToTest.putNo(4, "ich");
+        listToTest.putNo(5, "Kartoffel");
+        listToTest.putNo(6, "sehr");
+        listToTest.putNo(7, "mag");
+        
+        assertEquals(8, listToTest.getSize());
+        assertEquals("Kartoffel", listToTest.getNo(5));
+        assertEquals("Kartoffel", listToTest.getNo(2));
+        
+        assertTrue(listToTest.remove("Kartoffel"));
+        
+        assertEquals("weil", listToTest.getNo(2));
+        assertEquals("Kartoffel", listToTest.getNo(4));
+        assertEquals(7, listToTest.getSize());
+        assertTrue(listToTest.contains("Kartoffel"));
+        
+    }
+    
+    @Test
+    public void indexIstOutOfBounds() {
+        
+        MultiPurposeList<CD> listToTest = new MultiPurposeList<CD>();
+        
+        CD newCDRap = new CD("Das Gefuehl", AUDIO, "GZUZ 187");
+        CD newCDPop = new CD("Skromnost", AUDIO, "Toxis, GAVRILINA");
+        CD newCDClub = new CD("Jaegermeister", AUDIO, "Maxwell 187");
+        CD newCDJazz = new CD("Wacuka", AUDIO, "AVAION, Sofiya Nzau");
+        listToTest.putNo(0, newCDRap);
+        listToTest.putNo(1, newCDPop);
+        listToTest.putNo(2, newCDClub);
+        listToTest.putNo(3, newCDJazz);
+        
+        assertNotNull(listToTest.getNo(listToTest.getSize()+1));
+    }
+    
+    @Test
+    public void runTimeAndPerfomanceTest() {
+        
+        MultiPurposeList<String> listToTest = new MultiPurposeList<String>();
+       
+        for (int i = 0; i < 10000; i ++ ) {
+            listToTest.putNo(i,  UUID.randomUUID().toString());
+        }
+        
+        listToTest.putNo(350, UUID.randomUUID().toString());
+        listToTest.putNo(7430, UUID.randomUUID().toString());
+        listToTest.putNo(1350, UUID.randomUUID().toString());
+        listToTest.putNo(3250, UUID.randomUUID().toString());
+        listToTest.putNo(3450, UUID.randomUUID().toString());
+        
+        
+        listToTest.removeNo(392);
+        listToTest.removeNo(3192);
+        listToTest.removeNo(3942);
+        listToTest.removeNo(9392);
+        
+        assertEquals(10001, listToTest.getSize());
+        listToTest.printElemFirstToLast();
+    }
     
 }
     

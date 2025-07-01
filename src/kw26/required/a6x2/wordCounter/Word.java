@@ -3,14 +3,14 @@ package kw26.required.a6x2.wordCounter;
 import java.util.Objects;
 
 /**
- * @author Maksym Zadoya 
+ * @author Maksym Zadoya
  * @version 2025/06/29 #1
  */
 
 public class Word {
 
     String wort;
-    
+
     public Word(String wort) {
         this.wort = wort.toLowerCase();
     }
@@ -34,7 +34,5 @@ public class Word {
     public String toString() {
         return this.getClass() + "[wort=" + wort + "]";
     }
-    
-    
-    
+
 }

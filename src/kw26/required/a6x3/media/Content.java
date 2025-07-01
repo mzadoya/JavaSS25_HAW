@@ -10,6 +10,6 @@ public enum Content {
 
     AUDIO,
     VIDEO,
-    MOVIE,
+    MOVIE
     
 }
