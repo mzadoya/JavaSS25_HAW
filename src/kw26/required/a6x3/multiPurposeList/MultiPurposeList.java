@@ -54,12 +54,12 @@ public class MultiPurposeList<T> implements MultiPurposeList_I<T> {
      *               muss
      * @param data   Informations-Objekt des Knotens, die in der Liste eingefuegt
      *               werden muss
-     * @version 2025/07/01 #1
+     * @version 2025/07/01 #2
      */
     @Override
     public void putNo(int number, T data) {
 
-        assert number >= 0 && number <= getSize() : "Ausserhalb des gueltigen Bereich";
+        assert number >= 0 && number <= getSize() : "Ausserhalb des gueltigen Bereichs";
         Node<T> newNode = new Node<T>(data);
 
         if (isEmpty()) {
